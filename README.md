@@ -4,7 +4,7 @@ The city simulation for build projects of tomorrow
 ## Why we build this project ?
 We want to provide a platform to simulate a city.
 
-This city will help you to build projects and test it with your how data.
+This city will help you to build projects and test it with your own data.
 You can manipulate your data to create your own scenario dream senario.
 
 ### How the project will help you ?
