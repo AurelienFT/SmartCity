@@ -1,0 +1,25 @@
+<head>
+    <style>
+        .big-canvas {
+            position: absolute;
+            z-index: 3;
+        }
+        .big-class {
+            position: relative;
+            z-index: 1;
+        }
+        .image-canvas {
+            position: absolute;
+            z-index: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="big-class">
+        <canvas class="big-canvas" id="canvas"></canvas>
+        <img class="image-canvas" src="https://picsum.photos/id/588/100/200">
+    </div>
+    <script src="way_maps_example.js"></script>
+    <script src="index.js"></script>
+</body>
