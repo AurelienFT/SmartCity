@@ -1,6 +1,6 @@
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext('2d');
-var cellSize = 100;
+var cellSize = 30;
 ctx.beginPath();
 
 ctx.canvas.width = 1000;
@@ -12,10 +12,8 @@ for (var i = 0; i < ways.nodes.length; i++) {
     console.log(ways.nodes[i]);
     for (var x = ways.nodes[i].start.x; x <= ways.nodes[i].end.x; x++) {
         ctx.fillRect(x * cellSize, ways.nodes[i].end.y * cellSize, cellSize, cellSize);
-        console.log("print x")
     }
     for (var y = ways.nodes[i].start.y; y <= ways.nodes[i].end.y; y++) {
         ctx.fillRect(ways.nodes[i].end.x * cellSize, y * cellSize, cellSize, cellSize);
-        console.log("print y : " + ways.nodes[i].end.x + " | : " + y);
     }
 }
