@@ -1,4 +1,4 @@
-var ways = {
+{
     "roads": [
         {
             "name": "a",
@@ -61,7 +61,7 @@ var ways = {
             "bikeable": true
         }
     ],
-    "roads": [
+    "graph": [
         {
             "road": "a",
             "neighbors": [
