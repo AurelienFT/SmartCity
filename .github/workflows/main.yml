@@ -14,7 +14,9 @@ jobs:
     
     - uses: actions/checkout@v1
     - name: Run python server API
-      run: cd cityAPI && pip3 install -r requirements.txt && python3 app.py &
+      run: cd cityAPI
+           - pip3 install -r requirements.txt
+           - python3 app.py &
 
 
     - uses: actions/checkout@v1
