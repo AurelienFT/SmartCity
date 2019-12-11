@@ -3,11 +3,16 @@ name: CI
 on: [push]
 
 jobs:
-  build:
+  test:
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v1
-    - name: Run a one-line script
+    - name: Launch docker-compose
       run: docker-compose up -d
+    
+    - name: Github Action for curl
+      uses: wei/curl@v1.1.1
+      with:
+        args: localhost:5000/graphs/roads
