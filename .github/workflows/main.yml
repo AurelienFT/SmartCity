@@ -24,6 +24,8 @@ jobs:
           pip install -r requirements.txt
           python app.py &
 
-
     - name: Test API
       run: curl localhost:5000/graphs/roads
+
+    - name: Kill server API
+      run: kill %1
