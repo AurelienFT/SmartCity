@@ -17,15 +17,20 @@ jobs:
       with:
         python-version: 3.x
         architecture: x64
-
+    
     - name: Launch API server
       run: |
           cd cityAPI
           pip install -r requirements.txt
           python app.py &
+          echo "::set-env PID_SERVER=$!"
+          
 
     - name: Test API
       run: curl localhost:5000/graphs/roads
 
+    - name: Environment Printer
+      uses: managedkaos/print-env@v1.0
+  
     - name: Kill server API
       run: kill %1
