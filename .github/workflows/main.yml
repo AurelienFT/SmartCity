@@ -12,7 +12,6 @@ jobs:
     - name: Test docker-compose
       run: docker-compose build
     
-    - uses: actions/checkout@v1
     - name: Run python server API
       run: |
           cd cityAPI
@@ -20,6 +19,5 @@ jobs:
           python3 app.py &
 
 
-    - uses: actions/checkout@v1
     - name: Test API
       run: curl localhost:5000/graphs/roads
