@@ -23,7 +23,7 @@ jobs:
           cd cityAPI
           pip install -r requirements.txt
           python app.py &
-          echo "::set-env PID_SERVER=$!"
+          ::set-env name=PID_SERVER::$!
           
 
     - name: Test API
