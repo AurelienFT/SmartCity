@@ -8,14 +8,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v1
     - name: Test docker-compose
       run: docker-compose build
     
+    - uses: actions/checkout@v1
     - name: Run python server API
-      run: cd cityAPI
-           - pip3 install -r requirements.txt
-           - python3 app.py &
+      run: |
+          cd cityAPI
+          pip3 install -r requirements.txt
+          python3 app.py &
 
 
-    - name: Test docker-compose
+    - uses: actions/checkout@v1
+    - name: Test API
       run: curl localhost:5000/graphs/roads
