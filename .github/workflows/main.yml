@@ -12,11 +12,15 @@ jobs:
     - name: Test docker-compose
       run: docker-compose build
     
-    - name: Run python server API
-      run: |
+    - name: Setup python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.x
+        architecture: x64
+    - run: |
           cd cityAPI
-          pip3 install -r requirements.txt
-          python3 app.py &
+          pip install -r requirements.txt
+          python app.py &
 
 
     - name: Test API
