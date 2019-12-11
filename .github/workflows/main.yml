@@ -17,7 +17,6 @@ jobs:
       run: cd cityAPI && pip3 install -r requirements.txt && python3 app.py &
 
 
-    - name: Github Action for curl
-      uses: wei/curl@v1.1.1
-      with:
-        args: localhost:5000/graphs/roads
+    - uses: actions/checkout@v1
+    - name: Test docker-compose
+      run: curl localhost:5000/graphs/roads
