@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@master
     - name: Test docker-compose
       run: docker-compose build
     
@@ -17,6 +17,8 @@ jobs:
       with:
         python-version: 3.x
         architecture: x64
+
+    - name: Launch API server
     - run: |
           cd cityAPI
           pip install -r requirements.txt
