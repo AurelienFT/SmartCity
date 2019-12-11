@@ -17,6 +17,8 @@ jobs:
       with:
         python-version: 3.x
         architecture: x64
+
+    - name: Launch API server
     - run: |
           cd cityAPI
           pip install -r requirements.txt
