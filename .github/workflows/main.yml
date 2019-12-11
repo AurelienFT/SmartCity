@@ -3,15 +3,20 @@ name: CI
 on: [push]
 
 jobs:
-  test:
+  Run tests:
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v1
-    - name: Launch docker-compose
+    - name: Test docker-compose
       run: docker-compose up -d
     
+    - uses: actions/checkout@v1
+    - name: Run python server API
+      run: cd cityAPI && pip3 install -r requirements.txt && python3 app.py
+
+
     - name: Github Action for curl
       uses: wei/curl@v1.1.1
       with:
