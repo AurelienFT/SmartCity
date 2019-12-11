@@ -33,4 +33,4 @@ jobs:
       uses: managedkaos/print-env@v1.0
   
     - name: Kill server API
-      run: kill %1
+      run: kill $PID_SERVER
