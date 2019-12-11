@@ -3,7 +3,7 @@ name: CI
 on: [push]
 
 jobs:
-  Run tests:
+  Run_Tests:
 
     runs-on: ubuntu-latest
 
