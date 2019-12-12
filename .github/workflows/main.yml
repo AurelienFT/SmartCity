@@ -39,4 +39,4 @@ jobs:
       run: kill $PID_SERVER
 
     - name: Kill MQTT Broker
-      run: docker rm (docker ps -a |grep eclipse-mosquitto |awk '{print $1}')
+      run: docker ps -a | awk '{ print $1,$2 }' | grep eclipse-mosquitto | awk '{print $1 }' | xargs -I {} docker rm {}
