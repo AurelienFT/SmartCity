@@ -13,7 +13,7 @@ jobs:
       run: docker-compose build
     
     - name: Launch broker MQTT
-      run: docker run -p 127.0.0.1:1883:1883/tcp eclipse-mosquitto
+      run: docker run -d -p 127.0.0.1:1883:1883/tcp eclipse-mosquitto
 
     - name: Setup python
       uses: actions/setup-python@v1
@@ -37,3 +37,6 @@ jobs:
   
     - name: Kill server API
       run: kill $PID_SERVER
+
+    - name: Kill MQTT Broker
+      run: docker rm (docker ps -a |grep eclipse-mosquitto |awk '{print $1}')
