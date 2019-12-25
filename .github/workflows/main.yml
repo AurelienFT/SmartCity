@@ -1,0 +1,42 @@
+name: CI
+
+on: [push]
+
+jobs:
+  Run_Tests:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+    - name: Test docker-compose
+      run: docker-compose build
+    
+    - name: Launch broker MQTT
+      run: docker run -d -p 127.0.0.1:1883:1883/tcp eclipse-mosquitto
+
+    - name: Setup python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.x
+        architecture: x64
+    
+    - name: Launch city server
+      run: |
+          cd cityServer
+          pip install -r requirements.txt
+          python server.py &
+          echo "::set-env name=PID_SERVER::$!"
+          
+
+    - name: Test API
+      run: curl localhost:5000/graphs/roads
+
+    - name: Environment Printer
+      uses: managedkaos/print-env@v1.0
+  
+    - name: Kill server API
+      run: kill $PID_SERVER
+
+    - name: Kill MQTT Broker
+      run: docker ps -a | awk '{ print $1,$2 }' | grep eclipse-mosquitto | awk '{print $1 }' | xargs -I {} docker rm --force {}

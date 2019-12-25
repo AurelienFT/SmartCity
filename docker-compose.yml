@@ -2,7 +2,17 @@ version: '3'
 
 services:
   city_display:
-    build: cityDisplay
+    build: cityServer
     restart: "always"
     ports:
       - "8080:8080"
+  city_api:
+    build: cityServer
+    restart: "always"
+    ports:
+      - "5000:5000"
+  mosquitto:
+    image: eclipse-mosquitto
+    ports:
+      - "1883:1883"
+    restart: "always"

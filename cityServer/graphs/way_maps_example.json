@@ -1,5 +1,5 @@
-var ways = {
-    "nodes": [
+{
+    "roads": [
         {
             "name": "a",
             "type": "road",
@@ -61,7 +61,7 @@ var ways = {
             "bikeable": true
         }
     ],
-    "roads": [
+    "graph": [
         {
             "road": "a",
             "neighbors": [

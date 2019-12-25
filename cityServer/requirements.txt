@@ -1,0 +1,4 @@
+flask-restful
+flask
+flask-cors
+paho-mqtt
