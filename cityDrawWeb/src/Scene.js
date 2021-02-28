@@ -30,6 +30,8 @@ class Scene extends Component {
     this.setupScene = this.setupScene.bind(this);
     this.destroyContext = this.destroyContext.bind(this);
     this.handleWindowResize = this.handleWindowResize.bind(this);
+    this.onDocumentMouse = this.onDocumentMouse.bind(this);
+    this.map = {};
   }
 
   componentWillMount() {
@@ -54,9 +56,13 @@ class Scene extends Component {
       new OBJLoader( manager )
         .setMaterials( materials )
         .setPath( '/Assets/' )
-        .load( 'city.obj', function ( object ) {
-          object.position.y = -5;
-          scene.add( object );
+        .load( 'city.obj', function ( map ) {
+          //this.map = map;
+          map.position.y = -5;
+          for (let i =0; i < map.children.length; i++) {
+            map.children[i].callback = function() { console.log( this.name ); }
+          }
+          scene.add( map );
 
         }, onProgress, onError );
 
@@ -104,10 +110,10 @@ class Scene extends Component {
     controls.dampingFactor = 0.25;
     controls.enableZoom = true;
     controls.zoomSpeed = 0.1;
-    controls.enableKeys = false;
+    controls.enableKeys = true;
     controls.screenSpacePanning = false;
     controls.enableRotate = true;
-    controls.autoRotate = true;
+    controls.autoRotate = false;
     controls.dampingFactor = 1;
     controls.autoRotateSpeed = 1.2;
     controls.enablePan = false;
@@ -125,17 +131,40 @@ class Scene extends Component {
   }
 
   renderScene() {
+    //console.log(this.scene);
     this.renderer.render(this.scene, this.camera);
   }
 
   animate() {
     this.frameId = requestAnimationFrame(this.animate);
     this.controls.update();
+    //console.log(this.camera.position.x + ", " + this.camera.position.y + ", " + this.camera.position.z);
     this.renderScene();
   }
 
   stop() {
     cancelAnimationFrame(this.frameId);
+  }
+
+  onDocumentMouse( event ) {
+
+    event.preventDefault();
+
+    let raycaster = new THREE.Raycaster();
+    let mouse = new THREE.Vector2();
+
+    mouse.x = ( event.clientX / this.renderer.domElement.clientWidth ) * 2 - 1;
+    mouse.y = - ( event.clientY / this.renderer.domElement.clientHeight ) * 2 + 1;
+
+    raycaster.setFromCamera( mouse, this.camera );
+
+    var intersects = raycaster.intersectObjects( this.scene.children[1].children ); 
+
+    if ( intersects.length > 0 ) {
+
+        intersects[0].object.callback();
+
+    }
   }
 
   handleWindowResize() {
@@ -166,6 +195,7 @@ class Scene extends Component {
         ref={(container) => {
           this.container = container;
         }}
+        onClick={(evt) => {this.onDocumentMouse(evt)}}
         style={{
           width: width,
           height: height,
