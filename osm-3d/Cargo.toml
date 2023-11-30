@@ -1,0 +1,17 @@
+[package]
+name = "osm-viewer"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+osmio = "0.10.0"
+rapier3d = "0.17.2"
+rapier_testbed3d = "0.17.0"
+egui_plot = "0.23.0"
+egui = "0.23.0"
+eframe = "0.23.0"
+bevy = { version = "0.12.1", features = ["bevy_winit", "x11"] }
+bevy_rapier3d = "0.23.0"
+bevy_panorbit_camera = "0.9"

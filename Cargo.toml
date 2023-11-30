@@ -1,0 +1,5 @@
+[workspace]
+members = [
+    "osm-3d"
+]
+resolver = "2"
