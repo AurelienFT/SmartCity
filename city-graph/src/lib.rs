@@ -11,11 +11,11 @@ pub struct Node {
 pub struct Street {
     pub id: Id,
     pub name: String,
-    pub nodes: Vec<Id>
+    pub nodes: Vec<Id>,
 }
 
 #[derive(Default)]
 pub struct CityGraph {
     pub streets: HashMap<Id, Street>,
-    pub nodes: HashMap<Id, Node>
+    pub nodes: HashMap<Id, Node>,
 }

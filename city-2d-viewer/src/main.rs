@@ -14,13 +14,21 @@ fn two_d_display(road_coords: &CityGraph) {
         ..Default::default()
     };
 
-    let road_coords = road_coords.streets.iter().map(|(_, street)| {
-        let points = street.nodes.iter().map(|node_id| {
-            let node = road_coords.nodes.get(node_id).unwrap();
-            [node.coords[1], node.coords[0]]
-        }).collect::<Vec<_>>();
-        (street.name.clone(), points)
-    }).collect::<Vec<_>>();
+    let road_coords = road_coords
+        .streets
+        .values()
+        .map(|street| {
+            let points = street
+                .nodes
+                .iter()
+                .map(|node_id| {
+                    let node = road_coords.nodes.get(node_id).unwrap();
+                    [node.coords[1], node.coords[0]]
+                })
+                .collect::<Vec<_>>();
+            (street.name.clone(), points)
+        })
+        .collect::<Vec<_>>();
 
     eframe::run_simple_native("My egui App", options, move |ctx, _frame| {
         egui::CentralPanel::default().show(ctx, |ui| {
@@ -33,7 +41,8 @@ fn two_d_display(road_coords: &CityGraph) {
                 for line in lines {
                     plot_ui.line(line)
                 }
+            });
         });
-        });
-    }).unwrap();
+    })
+    .unwrap();
 }
