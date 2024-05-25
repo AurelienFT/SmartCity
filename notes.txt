@@ -1,0 +1,4 @@
+- Avoir un graph avec chaque croisement.
+- Avoir les feux sur chaque croisement et un cache des feux
+- Faire des voitures qui avance d'un point A à un point B en parcourant le graph
+- Demander à chat gpt d'allumer les feux au bon moment

@@ -1,5 +1,7 @@
 [workspace]
 members = [
-    "osm-3d"
+    "city-2d-viewer",
+    "city-graph",
+    "osm-parser"
 ]
 resolver = "2"
